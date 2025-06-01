@@ -1,3 +1,5 @@
+# Initial Push nach GitHub
+
 from flask import Flask, request, jsonify, render_template, send_file, url_for
 from flask_cors import CORS
 from dotenv import load_dotenv
