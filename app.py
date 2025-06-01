@@ -1,6 +1,4 @@
-# Initial Push nach GitHub
-
-from flask import Flask, request, jsonify, render_template, send_file, url_for
+from flask import Flask, request, jsonify, render_template, send_file
 from flask_cors import CORS
 from dotenv import load_dotenv
 from io import BytesIO
@@ -15,7 +13,7 @@ import os
 
 # === Initialisierung ===
 load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))  # neue SDK-Struktur
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 CORS(app)
@@ -24,7 +22,8 @@ CORS(app)
 
 @app.route('/')
 def index():
-    return render_template('index.html')  # muss in templates/index.html liegen
+    return render_template('index.html')
+
 
 @app.route('/api/generate', methods=['POST'])
 def generate():
@@ -51,7 +50,7 @@ Lebenslauf:
 """
 
     try:
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model="gpt-4",
             messages=[
                 {"role": "system", "content": "Du bist ein professioneller deutscher Bewerbungscoach."},
@@ -61,7 +60,7 @@ Lebenslauf:
             max_tokens=2000
         )
 
-        full_text = response.choices[0].message['content']
+        full_text = response.choices[0].message.content
         if "Lebenslauf:" in full_text:
             anschreiben, lebenslauf = full_text.split("Lebenslauf:", 1)
         else:
@@ -75,6 +74,7 @@ Lebenslauf:
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
 
 @app.route('/api/export/docx', methods=['POST'])
 def export_docx():
@@ -113,6 +113,7 @@ def export_docx():
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
 
 @app.route('/api/export/pdf', methods=['POST'])
 def export_pdf():
@@ -160,11 +161,8 @@ def export_pdf():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-# === Starten ===
-# if __name__ == '__main__':
-#     app.run(debug=True)
 
+# === Start (auch für Render) ===
 if __name__ == '__main__':
-    import os
-    port = int(os.environ.get("PORT", 5000))  # <-- PORT von Render
+    port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port, debug=True)
