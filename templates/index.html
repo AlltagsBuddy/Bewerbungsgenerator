@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KI Bewerbungsgenerator | AlltagsBuddy</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background-color: #ffffff;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+    }
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-wrapper img {
+      height: 80px;
+    }
+    .logo-wrapper span {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #1BC7C2;
+    }
+    .header-title {
+      flex-grow: 1;
+      text-align: center;
+      font-size: 1.8rem;
+      color: #FF6B00;
+    }
+    .cta-button {
+      background-color: #FF6B00;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #FF6B00;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+    }
+    textarea, button, input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    .style-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 10px;
+    }
+    .style-buttons button {
+      padding: 10px 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      cursor: pointer;
+    }
+    .style-buttons button.selected {
+      background-color: #FF6B00;
+      color: white;
+      border: none;
+    }
+    button {
+      background-color: #FF6B00;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .output {
+      margin-top: 30px;
+      background-color: #f4f4f4;
+      padding: 20px;
+      border-radius: 8px;
+      white-space: pre-wrap;
+    }
+    #status {
+      margin-top: 15px;
+      font-weight: bold;
+      text-align: center;
+    }
+    .link-hinweis {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.9rem;
+    }
+    footer {
+      text-align: center;
+      padding: 30px;
+      background-color: #1BC7C2;
+      color: white;
+    }
+    .stil-button {
+  background-color: #FF6B00;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  width: 100%;
+}
+.stil-button:hover {
+  background-color: #e65c00;
+}
+
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo-wrapper">
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="AlltagsBuddy Logo" width="160" height="160" />
+    <span>AlltagsBuddy</span>
+  </div>
+  <div class="header-title">KI Bewerbungsgenerator</div>
+  <a href="/" class="cta-button">Startseite</a>
+</header>
+
+<main>
+  <h2>Professionelle Bewerbung aus deinen bisherigen Unterlagen</h2>
+  <p style="text-align:center">
+    Füge deine bisherigen Inhalte (Anschreiben, Lebenslauf, ggf. Stellenanzeige) ein – unsere KI erstellt daraus eine überzeugende Bewerbung.
+  </p>
+
+  <form id="generatorForm">
+    <label for="userInput">Deine bisherigen Bewerbungsunterlagen (Textform)</label>
+    <textarea id="userInput" rows="14" placeholder="Hier deine bisherigen Unterlagen einfügen..."></textarea>
+
+    <label for="stil">Stil der Bewerbung:</label>
+<div id="stilButtons">
+  <button type="button" class="stil-button" data-stil="modern">Modern</button>
+  <button type="button" class="stil-button" data-stil="klassisch">Klassisch</button>
+  <button type="button" class="stil-button" data-stil="kreativ">Kreativ</button>
+  <button type="button" class="stil-button" data-stil="seriös">Seriös</button>
+</div>
+<input type="hidden" id="stil" value="modern" />
+
+
+    <input type="hidden" id="stil" name="stil" value="modern" />
+
+    <button id="generateBtn" type="submit">Jetzt Bewerbung generieren</button>
+  </form>
+
+  <div id="status"></div>
+  <div id="output" class="output"></div>
+
+  <div id="export-buttons" style="display:none">
+    <button id="downloadPdfBtn">📄 PDF herunterladen</button>
+    <button id="downloadDocxBtn">📝 Word herunterladen</button>
+  </div>
+
+  <div class="link-hinweis">
+    Du kannst den Inhalt in kostenlose Design-Vorlagen einfügen, z. B. auf <a href="https://lebenslaufdesigns.de" target="_blank">lebenslaufdesigns.de</a>
+  </div>
+</main>
+
+<footer>
+  &copy; 2025 AlltagsBuddy – Dein smarter KI-Buddy
+</footer>
+
+<script>
+  const form = document.getElementById('generatorForm');
+  const output = document.getElementById('output');
+  const status = document.getElementById('status');
+  const exportBox = document.getElementById('export-buttons');
+  const styleButtons = document.querySelectorAll('.style-btn');
+  const stilInput = document.getElementById('stil');
+
+  let result = { anschreiben: '', lebenslauf: '' };
+
+  styleButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      styleButtons.forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      stilInput.value = btn.dataset.stil;
+    });
+  });
+
+  function setStatus(msg, color = '#333') {
+    status.innerText = msg;
+    status.style.color = color;
+  }
+
+  function disableAll(disabled) {
+    document.getElementById('generateBtn').disabled = disabled;
+    document.getElementById('downloadPdfBtn').disabled = disabled;
+    document.getElementById('downloadDocxBtn').disabled = disabled;
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    setStatus('⏳ Bewerbung wird generiert...');
+    disableAll(true);
+
+    const res = await fetch('/api/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        inhalt: document.getElementById('userInput').value,
+        stil: stilInput.value
+      })
+    });
+
+    const data = await res.json();
+    if (data.error) {
+      setStatus('❌ Fehler: ' + data.error, 'red');
+      disableAll(false);
+      return;
+    }
+
+    result = data;
+    output.innerHTML = `<h3>Anschreiben</h3><p>${data.anschreiben.replace(/\n/g, '<br>')}</p><h3>Lebenslauf</h3><p>${data.lebenslauf.replace(/\n/g, '<br>')}</p>`;
+    setStatus('✅ Bewerbung erfolgreich generiert!', 'green');
+    exportBox.style.display = 'block';
+    disableAll(false);
+  });
+
+  document.getElementById('downloadPdfBtn').addEventListener('click', async () => {
+    setStatus('📄 PDF wird erstellt...');
+    disableAll(true);
+    const res = await fetch('/api/export/pdf', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(result)
+    });
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'bewerbung.pdf';
+    a.click();
+    setStatus('✅ PDF wurde heruntergeladen', 'green');
+    disableAll(false);
+  });
+
+  document.getElementById('downloadDocxBtn').addEventListener('click', async () => {
+    setStatus('📝 Word wird erstellt...');
+    disableAll(true);
+    const res = await fetch('/api/export/docx', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(result)
+    });
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'bewerbung.docx';
+    a.click();
+    setStatus('✅ Word-Datei wurde heruntergeladen', 'green');
+    disableAll(false);
+  });
+  document.querySelectorAll('.stil-button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.getElementById('stil').value = btn.dataset.stil;
+    document.querySelectorAll('.stil-button').forEach(b => b.style.opacity = '0.6');
+    btn.style.opacity = '1';
+  });
+});
+
+</script>
+</body>
+</html>
