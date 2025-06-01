@@ -1,6 +1,6 @@
 flask
-flask-cors
-python-dotenv
 openai
-docxtpl
+python-dotenv
+python-docx
 reportlab
+requests
