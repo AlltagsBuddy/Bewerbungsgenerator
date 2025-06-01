@@ -161,8 +161,8 @@ def export_pdf():
         return jsonify({'error': str(e)}), 500
 
 # === Starten ===
-if __name__ == '__main__':
-    app.run(debug=True)
+# if __name__ == '__main__':
+#     app.run(debug=True)
 
 if __name__ == '__main__':
     import os
