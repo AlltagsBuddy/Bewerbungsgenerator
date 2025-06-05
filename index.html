@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LTDBCWEMWL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LTDBCWEMWL');
+</script>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AlltagsBuddy</title>
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  header {
+    background-color: #ffffff;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+  }
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1BC7C2;
+  }
+  .cta-button {
+    background-color: #FF6B00;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-decoration: none;
+  }
+  .hero {
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #1BC7C2 0%, #ffffff 100%);
+  }
+  .hero h1 {
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .hero p {
+    font-size: 1.2rem;
+    color: #444;
+    margin-bottom: 30px;
+  }
+  .hero .cta-button {
+    font-size: 1.2rem;
+  }
+  .features {
+    display: flex;
+    justify-content: space-around;
+    padding: 60px 20px;
+    background-color: #ffffff;
+  }
+  .feature-box {
+    max-width: 250px;
+    text-align: center;
+  }
+  .feature-box h3 {
+    color: #1BC7C2;
+    margin-bottom: 10px;
+  }
+  .products {
+    padding: 60px 20px;
+    text-align: center;
+  }
+  .products h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 40px;
+  }
+  .product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  .product-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 250px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .product-card h4 {
+    margin-bottom: 10px;
+    color: #FF6B00;
+  }
+  footer {
+    text-align: center;
+    padding: 30px;
+    background-color: #1BC7C2;
+    color: white;
+  }
+  .buddy-highlight {
+    background-color: #ffffff;
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+  }
+  .buddy-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    max-width: 1000px;
+  }
+  .buddy-img {
+    width: 200px;
+    height: auto;
+    animation: float 3s ease-in-out infinite;
+  }
+  .speech-bubble {
+    background-color: #f9f9f9;
+    border: 2px solid #1BC7C2;
+    padding: 20px 25px;
+    border-radius: 20px;
+    max-width: 400px;
+    font-size: 1rem;
+    color: #333;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    position: relative;
+  }
+  .speech-bubble::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -20px;
+    transform: translateY(-50%);
+    border: 10px solid transparent;
+    border-right-color: #f9f9f9;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .ebook-highlight {
+    background-color: #1BC7C2;
+    padding: 80px 20px;
+    color: white;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+  .ebook-wrapper.centered {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .ebook-wrapper h2 {
+    font-size: 2rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    line-height: 1.3;
+  }
+  .ebook-wrapper p {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    color: #f0f0f0;
+  }
+  .ebook-wrapper .cta-button {
+    background-color: #FF6B00;
+    font-size: 1.1rem;
+    padding: 14px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+  }
+  .ebook-cover {
+    width: 160px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  }
+  .info-banner {
+    background-color: #FF6B00;
+    color: white;
+    text-align: center;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  .info-banner a {
+    color: #ffffff;
+    text-decoration: underline;
+    margin-left: 5px;
+    font-weight: 600;
+  }
+  .ebook-row-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 60px 20px;
+    background-color: #1BC7C2;
+  }
+  @media (max-width: 768px) {
+    .features {
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+    .feature-box {
+      max-width: 90%;
+    }
+    .feature-box .cta-button {
+      display: inline-block;
+      margin-top: 15px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="info-banner">
+  <p>🚧 Diese Website ist noch im Aufbau – weitere KI-Produkte sind bald verfügbar. <a href="Newsletter.html">Jetzt Newsletter abonnieren</a> und informiert bleiben!</p>
+</div>
+
+<header>
+  <div class="logo"></div>
+  <img src="Bilder/logo.png" alt="AlltagsBuddy Logo" width="200" height="200" />
+  <a href="Newsletter.html" class="cta-button">Newsletter</a>
+</header>
+
+<section class="hero">
+  <h1>Dein smarter KI-Buddy für den Alltag.</h1>
+  <p>Prompts, Tools & Automationen, die dir den Alltag erleichtern.</p>
+</section>
+
+<section class="buddy-highlight">
+  <div class="buddy-wrapper">
+    <img src="Bilder/buddy.png" alt="KI Buddy" class="buddy-img" />
+    <div class="speech-bubble">
+      <p>Hi! Ich helfe dir, deinen Alltag leichter zu machen – ganz ohne KI-Kauderwelsch 😄</p>
+    </div>
+  </div>
+</section>
+
+<section class="ebook-row-wrapper">
+  <div class="ebook-highlight">
+    <div class="ebook-wrapper centered">
+      <img src="Bilder/KI_Cover.png" alt="E-Book Cover AlltagsBuddy" class="ebook-cover" />
+      <h2>📘Als E-Book von Amazon:<br>„KI ganz einfach erklärt“</h2>
+      <p>Perfekt für Einsteiger: Lerne, wie dir KI im Alltag wirklich hilft – ohne Fachchinesisch.</p>
+      <a href="https://amzn.to/4jvHUBy" class="cta-button" download>Jetzt herunterladen</a>
+    </div>
+  </div>
+
+  <div class="ebook-highlight">
+    <div class="ebook-wrapper centered">
+      <img src="Bilder/KI_Cover.png" alt="E-Book Cover AlltagsBuddy" class="ebook-cover" />
+      <h2>📘Als PDF direkt zum Download:<br>„KI ganz einfach erklärt“</h2>
+      <p>Perfekt für Einsteiger: Lerne, wie dir KI im Alltag wirklich hilft – ohne Fachchinesisch.</p>
+      <a href="https://copecart.com/products/a51d38b8/checkout" class="cta-button" download>Jetzt herunterladen</a>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="feature-box">
+    <h3>Prompts</h3>
+    <p>Nutze vorgefertigte KI-Lösungen ohne technisches Vorwissen.</p>
+    <br>
+    <a href="Promts.html" class="cta-button">Intelligente Prompts öffnen</a>
+  </div>
+  <div class="feature-box">
+    <h3>Echte Alltagshilfe</h3>
+    <p>Von To-do-Listen bis Sparplan – Alltagsprobleme smart lösen.</p>
+    <br>
+    <a href="AlltagsHilfen.html" class="cta-button">Alltagshilfen öffnen</a>
+  </div>
+  <div class="feature-box">
+    <h3>Einfach & Sicher</h3>
+    <p>Datenschutzkonform & leicht anwendbar.</p>
+    <br>
+    <a href="Tools.html" class="cta-button">Nützliche Tools öffnen</a>
+  </div>
+</section>
+
+<section class="products">
+  <h2>Unsere beliebtesten Tools</h2>
+  <div class="product-grid">
+    <div class="product-card">
+      <h4>HaushaltsplanPrompt</h4>
+      <p>Organisierter und strukturierter Haushaltsplan.</p>
+    </div>
+    <div class="product-card">
+      <h4>Essensplaner</h4>
+      <p>Deine Woche mit Rezepten & Einkaufsliste automatisiert.</p>
+    </div>
+    <div class="product-card">
+      <h4>Workout-Buddy</h4>
+      <p>Starte fit und munter in den Tag.</p>
+    </div>
+    <div class="product-card">
+      <h4>Haushalts-Check</h4>
+      <p>Organisation & Struktur für den Familienalltag.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 AlltagsBuddy – Dein smarter KI-Buddy
+  <a href="impressum.html">Impressum</a>
+</footer>
+
+</body>
+</html>

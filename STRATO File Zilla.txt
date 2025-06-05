@@ -1,0 +1,14 @@
+Benutzer: 
+su56019
+Passwort:
+Fingerweg1.2.3.4.
+Port: 
+22
+Server:
+5017779908.ssh.w2.strato.hosting
+Verzeichnis:
+/alltags-buddy
+Protokoll:
+SFTP + SSH
+
+
