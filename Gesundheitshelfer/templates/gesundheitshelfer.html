@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KI-Gesundheitshelfer | AlltagsBuddy</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background-color: #ffffff;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo img {
+      height: 60px;
+    }
+    .logo span {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #1BC7C2;
+    }
+    .cta-button {
+      background-color: #FF6B00;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+      text-align: center;
+      color: #FF6B00;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+    }
+    textarea, button, input, select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #FF6B00;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .output {
+      margin-top: 30px;
+      background-color: #f4f4f4;
+      padding: 20px;
+      border-radius: 8px;
+      white-space: pre-wrap;
+    }
+    .export-buttons {
+      display: none;
+      margin-top: 20px;
+      text-align: center;
+    }
+    .export-buttons button {
+      margin: 5px;
+    }
+    footer {
+      text-align: center;
+      padding: 30px;
+      background-color: #1BC7C2;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="Bilder/logo.png" alt="AlltagsBuddy Logo" />
+      <span>AlltagsBuddy</span>
+    </div>
+    <a href="index.html" class="cta-button">Zurück zur Startseite</a>
+  </header>
+
+  <main>
+    <h1>KI-Gesundheitshelfer</h1>
+    <p style="text-align:center">
+      Erhalte eine erste Einschätzung deiner Beschwerden durch KI – ganz anonym und ohne Datenspeicherung.
+    </p>
+
+    <form id="healthForm">
+      <label for="alter">Alter</label>
+      <input type="number" id="alter" placeholder="z. B. 34" />
+
+      <label for="geschlecht">Geschlecht</label>
+      <select id="geschlecht">
+        <option>Weiblich</option>
+        <option>Männlich</option>
+        <option>Divers</option>
+      </select>
+
+      <label for="groesse">Größe (in cm)</label>
+      <input type="number" id="groesse" placeholder="z. B. 175" />
+
+      <label for="gewicht">Gewicht (in kg)</label>
+      <input type="number" id="gewicht" placeholder="z. B. 70" />
+
+      <label for="beschwerdenSeit">Seit wann bestehen die Beschwerden?</label>
+      <input type="text" id="beschwerdenSeit" placeholder="z. B. seit 3 Tagen" />
+
+      <label for="symptome">Beschreibe deine Symptome</label>
+      <textarea id="symptome" rows="5" placeholder="z. B. Halsschmerzen, Hautausschlag..."></textarea>
+
+      <label for="bild">Optional: Bild hochladen</label>
+      <input type="file" id="bild" accept="image/*" />
+
+      <label for="verlauf">Symptomverlauf</label>
+      <select id="verlauf">
+        <option value="konstant">Konstant</option>
+        <option value="verschlimmert">Wird schlimmer</option>
+        <option value="wechselhaft">Kommt und geht</option>
+      </select>
+
+      <label for="vorerkrankungen">Vorerkrankungen</label>
+      <input type="text" id="vorerkrankungen" placeholder="z. B. Asthma, Bluthochdruck" />
+
+      <label for="allergien">Allergien / Unverträglichkeiten</label>
+      <input type="text" id="allergien" placeholder="z. B. Penicillin, Laktose" />
+
+      <label for="medikamente">Aktuelle Medikamenteneinnahme</label>
+      <input type="text" id="medikamente" placeholder="z. B. Ibuprofen, Metformin" />
+
+      <label for="behandlung">Behandlungsmethode</label>
+      <select id="behandlung">
+        <option value="rezeptfrei">Rezeptfreie Medikamente</option>
+        <option value="alternativ">Alternative Medizin</option>
+        <option value="beides">Beides</option>
+      </select>
+
+      
+      <button id="generateDiagnosis" type="submit">🔍 Diagnose erstellen</button>
+    </form>
+
+    <div id="diagnoseOutput" class="output"></div>
+
+    <div class="export-buttons" id="exportButtons">
+      <button onclick="window.print()">📄 PDF herunterladen</button>
+      <button onclick="alert('Word-Download wird noch eingebaut.')">📝 Word-Datei speichern</button>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 AlltagsBuddy – Kein Ersatz für eine ärztliche Diagnose. Bei Unsicherheit bitte medizinische Hilfe in Anspruch nehmen.
+  </footer>
+
+  <script>
+    document.getElementById('healthForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const diagnoseOutput = document.getElementById('diagnoseOutput');
+      const exportButtons = document.getElementById('exportButtons');
+      diagnoseOutput.innerHTML = '⏳ Deine Angaben werden analysiert...';
+      exportButtons.style.display = 'none';
+
+      setTimeout(() => {
+        diagnoseOutput.innerHTML = `
+          <h3>🔍 Verdachtsdiagnose: Reizdarm</h3>
+          <p><strong>Empfohlene Behandlung:</strong><br>
+          - Iberogast oder Buscopan (rezeptfrei)<br>
+          - Kamillentee, Wärme, Stressreduktion</p>
+          <p><strong>Ernährung & Verhalten:</strong><br>
+          - Ballaststoffarme Ernährung, kleine Mahlzeiten, wenig Kaffee</p>
+          <p><strong>Fachärztliche Empfehlung:</strong><br>
+          - Hausarzt oder Gastroenterologe</p>
+          <p style="color:red"><strong>Hinweis:</strong> Diese Einschätzung ersetzt keinen Arztbesuch. Bei anhaltenden oder sich verschlimmernden Beschwerden bitte professionelle Hilfe aufsuchen.</p>
+        `;
+        exportButtons.style.display = 'block';
+      }, 1500);
+    });
+  </script>
+</body>
+</html>

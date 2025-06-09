@@ -1,0 +1,115 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+header {
+  background-color: #ffffff;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  height: 60px;
+}
+
+.logo span {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1BC7C2;
+}
+
+.cta-button {
+  background-color: #FF6B00;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+main {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+  text-align: center;
+  color: #FF6B00;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: 600;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+button {
+  background-color: #FF6B00;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.output {
+  margin-top: 30px;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 8px;
+  white-space: pre-wrap;
+}
+
+#status {
+  margin-top: 15px;
+  font-weight: bold;
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  background-color: #1BC7C2;
+  color: white;
+}
+
+footer a {
+  color: white;
+  text-decoration: underline;
+}
