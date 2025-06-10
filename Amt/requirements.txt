@@ -1,5 +1,0 @@
-flask
-flask-cors
-fpdf
-requests
-python-docx
