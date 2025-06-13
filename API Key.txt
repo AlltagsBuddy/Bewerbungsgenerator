@@ -5,7 +5,7 @@ Reiseplaner:
 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
 
 Bewerbung:
-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
+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
 
 Amt:
 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
@@ -24,3 +24,23 @@ https://maps.googleapis.com/maps/api/place/textsearch/json?query=Agentur+für+Ar
 GitHub: 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
 
 VS Zugriff auf GitHub: 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
+
+
+git checkout f14b8a6
+git checkout -b neuer-branchname
+
+
+# Backup sichern, falls nötig
+cd ..
+rm -rf Website
+git clone <repo-url>
+
+
+git checkout 13aab409
+
+git stash
+git checkout 13aab4094686fc0db8e53273fc105a92bd51d9f6
+
+git checkout 13aab40
+
+
