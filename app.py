@@ -8,12 +8,16 @@ from reportlab.lib.pagesizes import A4
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import cm
-from openai import OpenAI
+import openai
 import os
+
+from dotenv import load_dotenv
+load_dotenv()
+
 
 # === Initialisierung ===
 load_dotenv()
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))  # neue SDK-Struktur
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 CORS(app)
